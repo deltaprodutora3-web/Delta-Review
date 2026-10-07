@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>
+    Delta Produtora | ContentFlow
+  </title>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href="./style.css?v=10000"
+  />
+
+  <script>
+    const contentflowUser =
+      localStorage.getItem(
+        "contentflow-user"
+      );
+
+    const contentflowAuthenticated =
+      localStorage.getItem(
+        "contentflow-authenticated"
+      );
+
+    if (
+      !contentflowUser ||
+      contentflowAuthenticated !== "true"
+    ) {
+      window.location.replace(
+        "./login.html"
+      );
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brand-icon">
+          Δ
+        </div>
+
+        <div>
+          <h1>
+            Delta Produtora
+          </h1>
+
+          <span>
+            Painel da agência
+          </span>
+        </div>
+      </div>
+
+      <nav class="menu">
+
+        <button
+          class="menu-item active"
+          data-page="dashboard"
+        >
+          <span>◫</span>
+          Dashboard
+        </button>
+
+        <button
+          class="menu-item"
+          data-page="conteudos"
+        >
+          <span>▤</span>
+          Conteúdos
+        </button>
+
+        <button
+          class="menu-item"
+          data-page="pipeline"
+        >
+          <span>▦</span>
+          Fluxo de Conteúdo
+        </button>
+
+        <button
+          class="menu-item"
+          data-page="calendario"
+        >
+          <span>◷</span>
+          Calendário
+        </button>
+
+        <button
+          class="menu-item"
+          data-page="contentlab"
+        >
+          <span>✦</span>
+          Content Lab
+        </button>
+
+      </nav>
+
+      <div class="sidebar-footer">
+
+        <button
+          class="menu-item"
+          type="button"
+          data-page="configuracoes"
+        >
+          <span>⚙</span>
+          Configurações
+        </button>
+
+        <button
+          class="menu-item"
+          id="logout-button"
+          type="button"
+        >
+          <span>↪</span>
+          Sair
+        </button>
+
+        <div class="user-card">
+
+          <div
+            class="profile-photo-wrapper"
+            id="profile-photo-button"
+            title="Alterar foto de perfil"
+          >
+
+            <div
+              class="avatar"
+              id="profile-avatar"
+            >
+              GX
+            </div>
+
+            <div class="profile-edit-icon">
+              ✎
+            </div>
+
+            <input
+              type="file"
+              id="profile-photo-input"
+              accept="image/png, image/jpeg, image/webp"
+              hidden
+            >
+
+          </div>
+
+          <div class="user-info">
+            <strong id="logged-user-name">
+              Delta Produtora
+            </strong>
+
+            <span>
+              Administrador
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+
+        <div>
+          <p class="breadcrumb">
+            Workspace /
+          </p>
+
+          <h2 id="page-title">
+            Dashboard
+          </h2>
+        </div>
+
+        <div class="topbar-actions">
+
+          <button
+            class="command-button"
+            id="global-search-button"
+            type="button"
+            aria-label="Abrir busca geral"
+          >
+            <span>⌕</span>
+
+            Buscar
+
+            <kbd>
+              Ctrl K
+            </kbd>
+          </button>
+
+          <button
+            class="notification-button"
+            type="button"
+          >
+            ♢
+          </button>
+
+        </div>
+
+      </header>
+
+      <section
+        id="dashboard"
+        class="page active"
+      >
+
+        <div class="hero">
+
+          <div>
+            <span class="eyebrow">
+              VISÃO GERAL
+            </span>
+
+            <h3>
+              Bom dia, Delta Produtora.
+            </h3>
+
+            <p>
+              Aqui está o que está acontecendo na operação de conteúdo da agência.
+            </p>
+          </div>
+
+          <div class="date-badge">
+            Outubro 2026
+          </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+          <article class="stat-card">
+            <span class="stat-label">
+              Conteúdos ativos
+            </span>
+
+            <strong id="stat-total">
+              0
+            </strong>
+
+            <small>
+              Produção geral
+            </small>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-label">
+              Em edição
+            </span>
+
+            <strong id="stat-edicao">
+              0
+            </strong>
+
+            <small>
+              Em andamento
+            </small>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-label">
+              Aprovação
+            </span>
+
+            <strong id="stat-aprovacao">
+              0
+            </strong>
+
+            <small>
+              Aguardando cliente
+            </small>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-label">
+              Publicados
+            </span>
+
+            <strong id="stat-publicados">
+              0
+            </strong>
+
+            <small>
+              Conteúdos concluídos
+            </small>
+          </article>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <span class="eyebrow">
+                  PRODUÇÃO
+                </span>
+
+                <h4>
+                  Fluxo de conteúdos
+                </h4>
+              </div>
+
+              <button
+                class="ghost-button"
+                type="button"
+              >
+                Ver fluxo de conteúdo
+              </button>
+
+            </div>
+
+            <div class="production-list">
+
+              <div class="production-row">
+                <span>
+                  Ideias
+                </span>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 30%"
+                  ></div>
+                </div>
+
+                <strong id="progress-ideias">
+                  0
+                </strong>
+              </div>
+
+              <div class="production-row">
+                <span>
+                  Roteiro
+                </span>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 45%"
+                  ></div>
+                </div>
+
+                <strong id="progress-roteiro">
+                  0
+                </strong>
+              </div>
+
+              <div class="production-row">
+                <span>
+                  Edição
+                </span>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 65%"
+                  ></div>
+                </div>
+
+                <strong id="progress-edicao">
+                  0
+                </strong>
+              </div>
+
+              <div class="production-row">
+                <span>
+                  Aprovação
+                </span>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 40%"
+                  ></div>
+                </div>
+
+                <strong id="progress-aprovacao">
+                  0
+                </strong>
+              </div>
+
+            </div>
+
+          </article>
+
+          <article class="panel">
+
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">
+                  PRÓXIMOS PRAZOS
+                </span>
+
+                <h4>
+                  Agenda editorial
+                </h4>
+              </div>
+            </div>
+
+            <div
+              id="upcoming-list"
+              class="upcoming-list"
+            >
+              <div class="empty-state">
+                Carregando próximos conteúdos...
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+
+        <article class="panel attention-panel">
+
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">
+                ATENÇÃO NECESSÁRIA
+              </span>
+
+              <h4>
+                O que merece seu olhar agora
+              </h4>
+            </div>
+          </div>
+
+          <div class="attention-grid">
+
+            <div class="attention-item">
+              <span class="attention-icon">
+                !
+              </span>
+
+              <div>
+                <strong>
+                  Conteúdos atrasados
+                </strong>
+
+                <p>
+                  Verifique conteúdos com prazo vencido.
+                </p>
+              </div>
+            </div>
+
+            <div class="attention-item">
+              <span class="attention-icon">
+                ✓
+              </span>
+
+              <div>
+                <strong>
+                  Aguardando aprovação
+                </strong>
+
+                <p>
+                  Conteúdos que precisam de retorno do cliente.
+                </p>
+              </div>
+            </div>
+
+            <div class="attention-item">
+              <span class="attention-icon">
+                ○
+              </span>
+
+              <div>
+                <strong>
+                  Clientes sem agenda
+                </strong>
+
+                <p>
+                  Clientes que ainda precisam de conteúdos planejados.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <section
+        id="clientes"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <div>
+            <span class="eyebrow">
+              GESTÃO DE CLIENTES
+            </span>
+
+            <h3>
+              Clientes
+            </h3>
+
+            <p>
+              Gerencie marcas, contratos e produção mensal.
+            </p>
+          </div>
+
+          <button
+            class="primary-button"
+            id="new-client-button"
+          >
+            + Novo cliente
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+
+          <input
+            id="client-search"
+            type="text"
+            placeholder="Buscar cliente..."
+          >
+
+          <select id="client-filter">
+            <option value="">
+              Todos os nichos
+            </option>
+
+            <option value="Marketing">
+              Marketing
+            </option>
+
+            <option value="Saúde">
+              Saúde
+            </option>
+
+            <option value="Odontologia">
+              Odontologia
+            </option>
+
+            <option value="Arquitetura">
+              Arquitetura
+            </option>
+          </select>
+
+        </div>
+
+        <div
+          id="clients-grid"
+          class="clients-grid"
+        >
+          <div class="empty-state">
+            Carregando clientes...
+          </div>
+        </div>
+
+      </section>
+
+      <section
+        id="conteudos"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <div>
+            <span class="eyebrow">
+              BIBLIOTECA
+            </span>
+
+            <h3>
+              Conteúdos
+            </h3>
+
+            <p>
+              Selecione um cliente para visualizar e gerenciar sua operação de conteúdo.
+            </p>
+          </div>
+
+          <button
+            class="primary-button new-content-trigger"
+            type="button"
+          >
+            + Novo conteúdo
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+                      <input
+            id="content-search"
+            type="text"
+            placeholder="Buscar conteúdo..."
+          >
+
+          <select id="content-status-filter">
+
+            <option value="">
+              Todos os status
+            </option>
+
+            <option value="Ideia">
+              Ideia
+            </option>
+
+            <option value="Roteiro">
+              Roteiro
+            </option>
+
+            <option value="Gravação">
+              Gravação
+            </option>
+
+            <option value="Edição">
+              Edição
+            </option>
+
+            <option value="Aprovação">
+              Aprovação
+            </option>
+
+            <option value="Agendado">
+              Agendado
+            </option>
+
+            <option value="Publicado">
+              Publicado
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Conteúdo</th>
+                <th>Cliente</th>
+                <th>Formato</th>
+                <th>Status</th>
+                <th>Prioridade</th>
+                <th>Publicação</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="contents-table"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <section
+        id="pipeline"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <div>
+            <span class="eyebrow">
+              PRODUÇÃO
+            </span>
+
+            <h3>
+              Fluxo de Conteúdo
+            </h3>
+
+            <p>
+              Acompanhe e mova os conteúdos pelas etapas da produção.
+            </p>
+          </div>
+
+          <button
+            class="primary-button new-content-trigger"
+            type="button"
+          >
+            + Novo conteúdo
+          </button>
+
+        </div>
+
+        <div class="kanban">
+
+          <div
+            class="kanban-column"
+            data-status="Ideia"
+          >
+            <div class="kanban-header">
+              <span>Ideias</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Roteiro"
+          >
+            <div class="kanban-header">
+              <span>Roteiro</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Gravação"
+          >
+            <div class="kanban-header">
+              <span>Gravação</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Edição"
+          >
+            <div class="kanban-header">
+              <span>Edição</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Aprovação"
+          >
+            <div class="kanban-header">
+              <span>Aprovação</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Agendado"
+          >
+            <div class="kanban-header">
+              <span>Agendado</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+          <div
+            class="kanban-column"
+            data-status="Publicado"
+          >
+            <div class="kanban-header">
+              <span>Publicado</span>
+              <small class="kanban-count">0</small>
+            </div>
+
+            <div class="kanban-list"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        id="calendario"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <div>
+            <span class="eyebrow">
+              PLANEJAMENTO
+            </span>
+
+            <h3>
+              Calendário editorial
+            </h3>
+
+            <p>
+              Visualize publicações e prazos do cliente selecionado por data.
+            </p>
+          </div>
+
+          <div class="calendar-controls">
+
+            <button
+              class="ghost-button"
+              id="calendar-prev"
+              type="button"
+              aria-label="Mês anterior"
+            >
+              ←
+            </button>
+
+            <strong id="calendar-current-month">
+              Outubro 2026
+            </strong>
+
+            <button
+              class="ghost-button"
+              id="calendar-next"
+              type="button"
+              aria-label="Próximo mês"
+            >
+              →
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          id="calendar-grid"
+          class="calendar-grid"
+        >
+
+          <div class="calendar-day-label">
+            SEG
+          </div>
+
+          <div class="calendar-day-label">
+            TER
+          </div>
+
+          <div class="calendar-day-label">
+            QUA
+          </div>
+
+          <div class="calendar-day-label">
+            QUI
+          </div>
+
+          <div class="calendar-day-label">
+            SEX
+          </div>
+
+          <div class="calendar-day-label">
+            SÁB
+          </div>
+
+          <div class="calendar-day-label">
+            DOM
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        id="contentlab"
+        class="page"
+      >
+
+        <div class="lab-layout">
+
+          <div class="lab-intro">
+
+            <span class="lab-badge">
+              ✦ Content Intelligence
+            </span>
+
+            <h3>
+              Transforme uma ideia em conteúdo.
+            </h3>
+
+            <p>
+              Use o Content Lab para gerar sugestões estratégicas
+              de conteúdo com base no objetivo e no perfil do cliente.
+            </p>
+
+          </div>
+
+          <div class="lab-card">
+
+            <div class="form-group">
+              <label>
+                Cliente
+              </label>
+
+              <select id="lab-client">
+                <option value="">
+                  Selecione o cliente
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Tema
+              </label>
+
+              <input
+                id="lab-theme"
+                type="text"
+                placeholder="Ex: Transplante capilar"
+              >
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label>
+                  Objetivo
+                </label>
+
+                <select id="lab-objective">
+                  <option>Autoridade</option>
+                  <option>Educação</option>
+                  <option>Conversão</option>
+                  <option>Engajamento</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Formato
+                </label>
+
+                <select id="lab-format">
+                  <option>Reels</option>
+                  <option>Carrossel</option>
+                  <option>Stories</option>
+                  <option>Post estático</option>
+                </select>
+              </div>
+
+            </div>
+
+            <button
+              id="generate-ideas-button"
+              class="lab-button"
+              type="button"
+            >
+              ✦ Gerar ideias
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          id="ideas-results"
+          class="ideas-results"
+        ></div>
+
+      </section>
+
+      <!-- CONFIGURAÇÕES -->
+
+      <section
+        id="configuracoes"
+        class="page"
+      >
+
+        <div class="settings-page">
+
+          <div class="settings-heading">
+            <div>
+              <span class="eyebrow">
+                PREFERÊNCIAS
+              </span>
+
+              <h3>
+                Configurações
+              </h3>
+
+              <p>
+                Gerencie as informações da agência e suas preferências no ContentFlow.
+              </p>
+            </div>
+          </div>
+
+          <article class="settings-card">
+
+            <div class="settings-card-header">
+
+              <div>
+                <span class="settings-icon">
+                  Δ
+                </span>
+              </div>
+
+              <div>
+                <h4>
+                  Perfil da agência
+                </h4>
+
+                <p>
+                  Informações exibidas no seu workspace.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="settings-profile">
+
+              <div
+                class="settings-avatar"
+                id="settings-profile-avatar"
+              >
+                GX
+              </div>
+
+              <div class="settings-profile-info">
+
+                <strong>
+                  Foto de perfil
+                </strong>
+
+                <span>
+                  JPG, PNG ou WEBP. Máximo de 3 MB.
+                </span>
+
+                <button
+                  type="button"
+                  class="secondary-button"
+                  id="settings-change-photo"
+                >
+                  Alterar foto
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="settings-divider"></div>
+
+            <form id="agency-settings-form">
+
+              <div class="settings-form-grid">
+
+                <div class="form-group">
+
+                  <label for="settings-agency-name">
+                    Nome da agência
+                  </label>
+
+                  <input
+                    id="settings-agency-name"
+                    type="text"
+                    value="Delta Produtora"
+                  >
+
+                </div>
+
+                <div class="form-group">
+
+                  <label for="settings-agency-role">
+                    Identificação
+                  </label>
+
+                  <input
+                    id="settings-agency-role"
+                    type="text"
+                    value="Administrador"
+                    disabled
+                  >
+
+                </div>
+
+              </div>
+
+              <div class="settings-actions">
+
+                <button
+                  type="submit"
+                  class="primary-button"
+                >
+                  Salvar alterações
+                </button>
+
+              </div>
+
+            </form>
+
+          </article>
+
+          <article class="settings-card">
+
+            <div class="settings-card-header">
+
+              <div>
+                <span class="settings-icon">
+                  ◎
+                </span>
+              </div>
+
+              <div>
+                <h4>
+                  Minha conta
+                </h4>
+
+                <p>
+                  Dados da conta utilizada para acessar o ContentFlow.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="settings-account-grid">
+
+              <div class="settings-info-row">
+                <span>
+                  Nome
+                </span>
+
+                <strong id="settings-user-name">
+                  Gabriel
+                </strong>
+              </div>
+
+              <div class="settings-info-row">
+                <span>
+                  E-mail
+                </span>
+
+                <strong id="settings-user-email">
+                  gabriel@delta.com
+                </strong>
+              </div>
+
+              <div class="settings-info-row">
+                <span>
+                  Nível de acesso
+                </span>
+
+                <strong>
+                  Administrador
+                </strong>
+              </div>
+
+            </div>
+
+          </article>
+
+          <article class="settings-card">
+
+            <div class="settings-card-header">
+
+              <div>
+                <span class="settings-icon">
+                  ◈
+                </span>
+              </div>
+
+              <div>
+                <h4>
+                  Segurança
+                </h4>
+
+                <p>
+                  Atualize sua senha de acesso ao sistema.
+                </p>
+              </div>
+
+            </div>
+
+            <form id="password-settings-form">
+
+              <div class="settings-form-grid">
+
+                <div class="form-group">
+
+                  <label for="settings-current-password">
+                    Senha atual
+                  </label>
+
+                  <input
+                    id="settings-current-password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Digite sua senha atual"
+                  >
+
+                </div>
+
+                <div></div>
+
+                <div class="form-group">
+
+                  <label for="settings-new-password">
+                    Nova senha
+                  </label>
+
+                  <input
+                    id="settings-new-password"
+                    type="password"
+                                        autocomplete="new-password"
+                    placeholder="Digite a nova senha"
+                  >
+
+                </div>
+
+                <div class="form-group">
+
+                  <label for="settings-confirm-password">
+                    Confirmar nova senha
+                  </label>
+
+                  <input
+                    id="settings-confirm-password"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Digite novamente"
+                  >
+
+                </div>
+
+              </div>
+
+              <div class="settings-actions">
+
+                <button
+                  type="submit"
+                  class="secondary-button"
+                >
+                  Alterar senha
+                </button>
+
+              </div>
+
+            </form>
+
+          </article>
+
+          <article class="settings-card">
+
+            <div class="settings-card-header">
+
+              <div>
+                <span class="settings-icon">
+                  ◫
+                </span>
+              </div>
+
+              <div>
+                <h4>
+                  Sistema
+                </h4>
+
+                <p>
+                  Informações sobre este workspace.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="settings-system-list">
+
+              <div class="settings-info-row">
+                <span>
+                  Produto
+                </span>
+
+                <strong>
+                  ContentFlow
+                </strong>
+              </div>
+
+              <div class="settings-info-row">
+                <span>
+                  Workspace
+                </span>
+
+                <strong>
+                  Delta Produtora
+                </strong>
+              </div>
+
+              <div class="settings-info-row">
+                <span>
+                  Versão
+                </span>
+
+                <strong>
+                  1.0
+                </strong>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- BUSCA GERAL -->
+
+  <div
+    id="global-search-modal"
+    class="modal global-search-modal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal-overlay"
+      data-global-search-close
+    ></div>
+
+    <div
+      class="modal-card global-search-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="global-search-title"
+    >
+
+      <div class="global-search-header">
+
+        <div class="global-search-input-wrapper">
+
+          <span class="global-search-icon">
+            ⌕
+          </span>
+
+          <input
+            id="global-search-input"
+            type="search"
+            placeholder="Buscar clientes, conteúdos, status, formatos..."
+            autocomplete="off"
+            aria-label="Buscar no ContentFlow"
+          >
+
+          <kbd>
+            ESC
+          </kbd>
+
+        </div>
+
+      </div>
+
+      <div class="global-search-body">
+
+        <div class="global-search-intro">
+
+          <span class="eyebrow">
+            BUSCA GERAL
+          </span>
+
+          <h3 id="global-search-title">
+            Encontre qualquer coisa
+          </h3>
+
+          <p>
+            Pesquise clientes e conteúdos da operação inteira.
+          </p>
+
+        </div>
+
+        <div
+          id="global-search-results"
+          class="global-search-results"
+        >
+
+          <div class="global-search-empty">
+
+            <strong>
+              Comece digitando para pesquisar
+            </strong>
+
+            <span>
+              Você pode buscar por cliente, conteúdo, status, formato ou responsável.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="global-search-footer">
+
+        <div>
+          <kbd>↑</kbd>
+          <kbd>↓</kbd>
+
+          <span>
+            navegar
+          </span>
+        </div>
+
+        <div>
+          <kbd>Enter</kbd>
+
+          <span>
+            abrir
+          </span>
+        </div>
+
+        <div>
+          <kbd>Esc</kbd>
+
+          <span>
+            fechar
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL NOVO CLIENTE -->
+
+  <div
+    id="client-modal"
+    class="modal"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card">
+
+      <div class="modal-header">
+
+        <div>
+          <span class="eyebrow">
+            NOVO CLIENTE
+          </span>
+
+          <h3>
+            Cadastrar cliente
+          </h3>
+        </div>
+
+        <button
+          class="close-modal"
+          data-modal="client-modal"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form id="client-form">
+
+        <div class="form-group">
+          <label>
+            Nome do cliente
+          </label>
+
+          <input
+            id="client-name"
+            type="text"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label>
+            Nicho
+          </label>
+
+          <input
+            id="client-niche"
+            type="text"
+          >
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>
+              Instagram
+            </label>
+
+            <input
+              id="client-instagram"
+              type="text"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              Conteúdos / mês
+            </label>
+
+            <input
+              id="client-content-count"
+              type="number"
+            >
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>
+            Responsável
+          </label>
+
+          <input
+            id="client-owner"
+            type="text"
+          >
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="secondary-button close-modal"
+            data-modal="client-modal"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Salvar cliente
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL NOVO CONTEÚDO -->
+
+  <div
+    id="content-modal"
+    class="modal"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card modal-large">
+
+      <div class="modal-header">
+
+        <div>
+          <span class="eyebrow">
+            NOVO CONTEÚDO
+          </span>
+
+          <h3>
+            Criar conteúdo
+          </h3>
+        </div>
+
+        <button
+          class="close-modal"
+          data-modal="content-modal"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form id="content-form">
+
+        <div class="form-group">
+          <label>
+            Título
+          </label>
+
+          <input
+            id="content-title"
+            type="text"
+            required
+          >
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>
+              Cliente
+            </label>
+
+            <select
+              id="content-client"
+              required
+            >
+              <option value="">
+                Selecione
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Formato
+            </label>
+
+            <select id="content-format">
+              <option>Reels</option>
+              <option>Carrossel</option>
+              <option>Stories</option>
+              <option>Post estático</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>
+              Plataforma
+            </label>
+
+            <select id="content-platform">
+              <option>Instagram</option>
+              <option>TikTok</option>
+              <option>YouTube</option>
+              <option>LinkedIn</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Objetivo
+            </label>
+
+            <select id="content-objective">
+              <option>Autoridade</option>
+              <option>Educação</option>
+              <option>Conversão</option>
+              <option>Engajamento</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>
+              Prioridade
+            </label>
+
+            <select id="content-priority">
+              <option>Baixa</option>
+              <option selected>Média</option>
+              <option>Alta</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Status
+            </label>
+
+            <select id="content-status">
+              <option>Ideia</option>
+              <option>Roteiro</option>
+              <option>Gravação</option>
+              <option>Edição</option>
+              <option>Aprovação</option>
+              <option>Agendado</option>
+              <option>Publicado</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>
+              Responsável
+            </label>
+
+            <input
+              id="content-owner"
+              type="text"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              Publicação
+            </label>
+
+            <input
+              id="content-date"
+              type="date"
+            >
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>
+            Descrição
+          </label>
+
+          <textarea
+            id="content-description"
+            rows="4"
+          ></textarea>
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="secondary-button close-modal"
+            data-modal="content-modal"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Criar conteúdo
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div
+    id="toast"
+    class="toast"
+  >
+    <span>
+      ✓
+    </span>
+
+    <p id="toast-message">
+      Operação realizada com sucesso.
+    </p>
+  </div>
+
+  <script>
+
+    (() => {
+
+      const logoutButton =
+        document.getElementById(
+          "logout-button"
+        );
+
+      const loggedUserName =
+        document.getElementById(
+          "logged-user-name"
+        );
+
+      try {
+
+        const savedUser =
+          JSON.parse(
+            localStorage.getItem(
+              "contentflow-user"
+            ) || "null"
+          );
+
+        if (
+          savedUser?.nome &&
+          loggedUserName
+        ) {
+          loggedUserName.textContent =
+            savedUser.nome;
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Erro ao carregar usuário logado:",
+          error
+        );
+
+      }
+
+      if (logoutButton) {
+
+        logoutButton.addEventListener(
+          "click",
+          () => {
+
+            localStorage.removeItem(
+              "contentflow-user"
+            );
+
+            localStorage.removeItem(
+              "contentflow-authenticated"
+            );
+
+            window.location.replace(
+              "./login.html"
+            );
+
+          }
+        );
+
+      }
+
+    })();
+
+  </script>
+
+  <script src="app.js"></script>
+  <script src="crud-ui.js"></script>
+
+</body>
+</html>
+        

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Login | Delta Produtora
+  </title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./login.css?v=2"
+  >
+
+</head>
+
+
+<body>
+
+
+  <main class="login-page">
+
+
+    <div class="background-glow background-glow-top"></div>
+
+    <div class="background-glow background-glow-bottom"></div>
+
+
+    <!-- LOGO GIGANTE AO FUNDO -->
+
+    <div
+      class="background-logo"
+      aria-hidden="true"
+    >
+
+      <img
+        src="./assets/delta-logo.png"
+        alt=""
+      >
+
+    </div>
+
+
+    <!-- CONTEÚDO CENTRAL -->
+
+    <section class="login-container">
+
+
+      <!-- MARCA -->
+
+      <div class="login-brand">
+
+        <div class="login-brand-icon">
+
+          <img
+            src="./assets/delta-logo.png"
+            alt="Logo Delta Produtora"
+          >
+
+        </div>
+
+
+        <div class="login-brand-text">
+
+          <strong>
+            Delta Produtora
+          </strong>
+
+          <span>
+            CONTENTFLOW
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- CARD -->
+
+      <div class="login-card">
+
+
+        <div class="login-header">
+
+          <span class="login-eyebrow">
+            ACESSO À PLATAFORMA
+          </span>
+
+          <h1>
+            Bem-vindo
+            <span>de volta.</span>
+          </h1>
+
+          <p>
+            Entre para acessar sua operação
+            de conteúdo.
+          </p>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form
+          id="login-form"
+          autocomplete="on"
+        >
+
+
+          <!-- EMAIL -->
+
+          <div class="login-field">
+
+            <label for="login-email">
+              E-mail
+            </label>
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                @
+              </span>
+
+              <input
+                id="login-email"
+                name="email"
+                type="email"
+                placeholder="seu@email.com"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- SENHA -->
+
+          <div class="login-field">
+
+
+            <div class="password-label-row">
+
+              <label for="login-password">
+                Senha
+              </label>
+
+              <button
+                type="button"
+                class="forgot-password"
+                id="forgot-password-button"
+              >
+                Esqueci a senha
+              </button>
+
+            </div>
+
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon lock-icon"
+                aria-hidden="true"
+              >
+                ◇
+              </span>
+
+              <input
+                id="login-password"
+                name="senha"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="password-toggle"
+                aria-label="Mostrar senha"
+              >
+                ◉
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- MENSAGEM -->
+
+          <div
+            class="login-message"
+            id="login-message"
+            role="alert"
+          ></div>
+
+
+          <!-- BOTÃO -->
+
+          <button
+            type="submit"
+            class="login-button"
+            id="login-button"
+          >
+
+            <span
+              id="login-button-text"
+            >
+              Entrar no ContentFlow
+            </span>
+
+            <span
+              class="login-button-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+
+          </button>
+
+
+        </form>
+
+
+        <!-- RODAPÉ DO CARD -->
+
+        <div class="login-card-footer">
+
+          <div class="security-indicator">
+
+            <span class="security-dot"></span>
+
+            <span>
+              Ambiente seguro
+            </span>
+
+          </div>
+
+          <span class="login-version">
+            Delta Produtora
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <footer class="login-footer">
+
+        <span>
+          © 2026 Delta Produtora
+        </span>
+
+        <span class="footer-dot">
+          •
+        </span>
+
+        <span>
+          ContentFlow
+        </span>
+
+      </footer>
+
+
+    </section>
+
+
+  </main>
+
+
+  <script
+    src="./login.js?v=2"
+  ></script>
+
+
+</body>
+
+</html>
